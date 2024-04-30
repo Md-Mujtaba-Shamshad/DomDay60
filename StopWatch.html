@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <style>
+        h1{
+            text-align: center;
+            background-color: darkcyan;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        #display{
+            text-align: center;
+            margin-top:40px;
+            font-style: initial;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size:xx-large;
+        }
+        #btn{
+            text-align: center;
+            margin-top: 60px;
+            
+        }
+        #container{
+            width: 400px;
+            margin-left: 40%;
+            background-color: cornflowerblue;
+            height: 250px;
+        }
+        button{
+            color: rgb(170, 170, 170);
+            background-color: darkslategray;
+            width: 70px;
+            height:30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+    <h1>StopWatch</h1>
+    <div id="display">00:00</div>
+    <div id="btn">
+        <button id="startbtn">Start</button>
+        <button id="pausebtn">Pause</button>
+        <button id="resetbtn">Reset</button> 
+    </div>
+</div>
+   
+</body>
+</html>
+<script>
+    let timer;
+    let seconds=0;
+    let display=document.getElementById("display")
+    let startBtn=document.getElementById("startbtn")
+    let pauseBtn=document.getElementById("pausebtn")
+    let resetBtn=document.getElementById("resetbtn")
+   
+    startBtn.addEventListener('click',startTimer);
+    pauseBtn.addEventListener('click',pauseTimer);
+    resetBtn.addEventListener('click',resetTimer);
+
+   function startTimer(){
+    timer=setInterval(updateTimer,1000)
+    startBtn.disabled=true
+   }
+
+   function pauseTimer(){
+    clearInterval(timer);
+    startBtn.disabled=false
+    pauseBtn.disabled=true
+   }
+
+
+   function resetTimer(){
+    clearInterval(timer);
+    display.textContent="00:00"
+
+   }
+
+   function updateTimer(){
+    seconds++
+    let displayMinutes=Math.floor(seconds/60);
+    let displaySeconds=seconds%60
+    display.textContent=displayMinutes.toString().padStart(2,"0") +":"+displaySeconds.toString().padStart(2,"0")
+   }
+
+</script>
+
+
+
